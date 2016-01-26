@@ -13,12 +13,17 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\obj_player</object>
-    <object>objects\obj_wall</object>
-    <object>objects\obj_grav_box_up</object>
-    <object>objects\obj_grav_box_left</object>
-    <object>objects\obj_grav_box_down</object>
-    <object>objects\obj_grav_box_right</object>
+    <objects name="Actors">
+      <object>objects\obj_grav_box_right</object>
+      <object>objects\obj_grav_box_down</object>
+      <object>objects\obj_grav_box_left</object>
+      <object>objects\obj_grav_box_up</object>
+      <object>objects\obj_wall</object>
+      <object>objects\obj_player</object>
+    </objects>
+    <objects name="Controllers">
+      <object>objects\ctrl_room_general</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
