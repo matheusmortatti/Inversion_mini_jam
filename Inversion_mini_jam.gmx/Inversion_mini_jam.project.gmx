@@ -20,7 +20,9 @@
     <object>objects\obj_grav_box_down</object>
     <object>objects\obj_grav_box_right</object>
   </objects>
-  <rooms name="rooms"/>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
