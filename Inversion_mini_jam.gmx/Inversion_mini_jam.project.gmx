@@ -8,13 +8,19 @@
   <sprites name="sprites">
     <sprite>sprites\sp_wall</sprite>
     <sprite>sprites\sp_player</sprite>
+    <sprite>sprites\sp_grav_box</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_grav_box_up</object>
+    <object>objects\obj_grav_box_left</object>
+    <object>objects\obj_grav_box_down</object>
+    <object>objects\obj_grav_box_right</object>
   </objects>
+  <rooms name="rooms"/>
   <help>
     <rtf>help.rtf</rtf>
   </help>
