@@ -10,6 +10,8 @@
     <sprite>sprites\sp_player</sprite>
     <sprite>sprites\sp_grav_box</sprite>
     <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\walk_left</sprite>
+    <sprite>sprites\walk_right</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
