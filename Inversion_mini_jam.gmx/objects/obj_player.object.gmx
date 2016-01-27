@@ -26,30 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
-grav = 0.1;
-hsp = 0;
-vsp = 0;
-jumpspeed = 3;
-movespeed = 3;
-mouse_click = false;
-mouseX = 0;
-mouseY = 0;
-image_speed = 0.2;
+grav = 0.1;                         // Gravity
+hsp = 0;                            // Horizontal Velocity
+vsp = 0;                            // Vertical Velocity
+jumpspeed = 3;                      // Jump Speed
+movespeed = 3;                      // Movement Speed
+mouse_click = false;                // Mouse Was Clicked
+jumping = false;                    // Is Jumping
+mouseX = 0;                         // Mouse Position X
+mouseY = 0;                         // Mouse Position Y
+image_speed = 0.2;                  // Animation Speed
+state_player = STATE_GRAV_DOWN;     // Gravity State
 
 //Init camera
-
 instance_create(x, y, ctrl_view);
-
-enum state
-{
-    DOWN,
-    UP,
-    RIGHT,
-    LEFT,
-    NO_INPUT
-}
-
-state_player = state.DOWN;
 </string>
           </argument>
         </arguments>
@@ -83,58 +73,90 @@ if(!mouse_click)
 {
     switch(state_player)
     {
-        case state.DOWN:
+        case STATE_GRAV_DOWN:
             //React to inputs
             move = key_left + key_right;
             if(move != 0) image_xscale = move;
             hsp = move * movespeed;
             if (vsp &lt; 10) vsp += grav;
             
+            if(jumping == true &amp;&amp; key_jump != 0)
+            {
+                vsp = key_jump * -jumpspeed;
+                jumping = false;
+            }
+            
             if (place_meeting(x,y+1,obj_wall_parent))
             {
-                vsp = key_jump * -jumpspeed
+                vsp = key_jump * -jumpspeed;
+                if(vsp != 0) jumping = true;
+                else jumping = false;
             }
             
             break;
             
-        case state.UP:
+        case STATE_GRAV_UP:
             //React to inputs
             move = -(key_left + key_right);
             if(move != 0) image_xscale = -move;
             hsp = move * movespeed;
             if (vsp &gt; -10) vsp -= grav;
             
+            if(jumping == true &amp;&amp; key_jump != 0)
+            {
+                vsp = key_jump * jumpspeed;
+                jumping = false;
+            }
+            
             if (place_meeting(x,y-1,obj_wall_parent))
             {
                 vsp = key_jump * jumpspeed
+                if(vsp != 0) jumping = true;
+                else jumping = false;
             }
             
             break;
             
-        case state.RIGHT:
+        case STATE_GRAV_RIGHT:
             //React to inputs
             move = -(key_left + key_right);
             if(move != 0) image_xscale = -move;
             vsp = move * movespeed;
             if (hsp &lt; 10) hsp += grav;
             
-            if (place_meeting(x+1,y,obj_wall_parent))
+            if(jumping == true &amp;&amp; key_jump != 0)
+            {
+                hsp = key_jump * -jumpspeed;
+                jumping = false;
+            }
+            
+            if (place_meeting(x+1,y,obj_wall_parent ))
             {
                 hsp = key_jump * -jumpspeed
+                if(hsp != 0) jumping = true;
+                else jumping = false;
             }
             
             break;
             
-        case state.LEFT:
+        case STATE_GRAV_LEFT:
             //React to inputs
             move = (key_left + key_right);
             if(move != 0) image_xscale = move;
             vsp = move * movespeed;
             if (hsp &gt; -10) hsp -= grav;
             
+            if(jumping == true &amp;&amp; key_jump != 0)
+            {
+                hsp = key_jump * jumpspeed;
+                jumping = false;
+            }
+            
             if (place_meeting(x-1,y,obj_wall_parent))
             {
                 hsp = key_jump * jumpspeed
+                if(hsp != 0) jumping = true;
+                else jumping = false;
             }
             break;
             
@@ -170,37 +192,41 @@ d = 1;
 l = 1;
 r = 1;
 
-if(!mouse_click){
-    mouseX=mouse_x;
-    mouseY=mouse_y;
-}
+
 if(mouse_check_button_pressed(mb_left))
 {
+    
+    if(!mouse_click){
+        mouseX = mouse_x;
+        mouseY = mouse_y;
+    }
+    
     tempx = sign(x - mouseX);
     tempy = sign(y - mouseY);
-    if(state_player == state.UP) u = 0;
-    else if(state_player == state.DOWN) d = 0;
-    else if(state_player == state.LEFT) l = 0;
-    else if(state_player == state.RIGHT) r = 0;
     
-    if (place_meeting(mouseX, mouseY, obj_grav_box_up) &amp;&amp; state_player != state.UP)
+    if(state_player == STATE_GRAV_UP) u = 0;
+    else if(state_player == STATE_GRAV_DOWN) d = 0;
+    else if(state_player == STATE_GRAV_LEFT) l = 0;
+    else if(state_player == STATE_GRAV_RIGHT) r = 0;
+    
+    if (place_meeting(mouseX, mouseY, obj_grav_box_up) &amp;&amp; state_player != STATE_GRAV_UP)
     {
-        state_player = state.UP;
+        state_player = STATE_GRAV_UP;
         if(tempy &gt;= 0) mouse_click = true;
     } else
-    if (place_meeting(mouseX, mouseY, obj_grav_box_down) &amp;&amp; state_player != state.DOWN)
+    if (place_meeting(mouseX, mouseY, obj_grav_box_down) &amp;&amp; state_player != STATE_GRAV_DOWN)
     {
-        state_player = state.DOWN;
+        state_player = STATE_GRAV_DOWN;
         if(tempy &lt; 0) mouse_click = true;
     } else   
-    if (place_meeting(mouseX, mouseY, obj_grav_box_left) &amp;&amp; state_player != state.LEFT)
+    if (place_meeting(mouseX, mouseY, obj_grav_box_left) &amp;&amp; state_player != STATE_GRAV_LEFT)
     {
-        state_player = state.LEFT;
+        state_player = STATE_GRAV_LEFT;
        if(tempx &gt;= 0) mouse_click = true;
     } else   
-    if (place_meeting(mouseX, mouseY, obj_grav_box_right) &amp;&amp; state_player != state.RIGHT)
+    if (place_meeting(mouseX, mouseY, obj_grav_box_right) &amp;&amp; state_player != STATE_GRAV_RIGHT)
     {
-        state_player = state.RIGHT;
+        state_player = STATE_GRAV_RIGHT;
         if(tempx &lt; 0) mouse_click = true;
     }
 }
@@ -246,22 +272,22 @@ if(mouse_click){
             <kind>1</kind>
             <string>/// Rotate View
 
-if(state_player == state.UP) 
+if(state_player == STATE_GRAV_UP) 
 {
     offset = 180 - view_angle[0];
     if(offset &lt;= -3 || offset &gt;= 3) view_angle[0] += 3 * sign(offset);
 } else
-if(state_player == state.DOWN)
+if(state_player == STATE_GRAV_DOWN)
 {
     offset = 0 - view_angle[0];
     if(offset &lt;= -3 || offset &gt;= 3) view_angle[0] += 3 * sign(offset);
 }else
-if(state_player == state.RIGHT)
+if(state_player == STATE_GRAV_RIGHT)
 {
     offset = 270 - view_angle[0];
     if(offset &lt;= -3 || offset &gt;= 3) view_angle[0] += 3 * sign(offset);
 }else
-if(state_player == state.LEFT)
+if(state_player == STATE_GRAV_LEFT)
 {
     offset = 90 - view_angle[0];
     if(offset &lt;= -3 || offset &gt;= 3) view_angle[0] += 3 * sign(offset);
@@ -289,24 +315,29 @@ if(state_player == state.LEFT)
             <kind>1</kind>
             <string>/// Rotate Player
 
-if(state_player == state.UP) 
+if(state_player == STATE_GRAV_UP) 
 {
     image_angle = 180;
 } else
-if(state_player == state.DOWN)
+if(state_player == STATE_GRAV_DOWN)
 {
     image_angle = 0;
 }else
-if(state_player == state.RIGHT)
+if(state_player == STATE_GRAV_RIGHT)
 {
   image_angle = 90;
 }else
-if(state_player == state.LEFT)
+if(state_player == STATE_GRAV_LEFT)
 {
     image_angle = 270;
 }
-draw_self()
-
+draw_self();
+/*
+while(place_meeting(x, y, argument0))
+{
+    y -= sign(hsp);
+    x -= sign(vsp);
+}*/
 </string>
           </argument>
         </arguments>

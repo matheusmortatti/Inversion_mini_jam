@@ -19,6 +19,7 @@
   <scripts name="scripts">
     <script>scripts\scr_collision_handle.gml</script>
     <script>scripts\InitGame.gml</script>
+    <script>scripts\move_towards_object.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Actors">
@@ -42,6 +43,16 @@
     <room>rooms\room1</room>
     <room>rooms\Level00</room>
   </rooms>
+  <constants number="8">
+    <constant name="STATE_GRAV_DOWN">0</constant>
+    <constant name="STATE_GRAV_UP">1</constant>
+    <constant name="STATE_GRAV_LEFT">2</constant>
+    <constant name="STATE_GRAV_RIGHT">3</constant>
+    <constant name="STATE_INPUT_DISABLED">4</constant>
+    <constant name="STATE_INPUT_ENABLED">5</constant>
+    <constant name="STATE_GRAV_DISABLED">6</constant>
+    <constant name="STATE_GRAV_ENABLED">7</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
