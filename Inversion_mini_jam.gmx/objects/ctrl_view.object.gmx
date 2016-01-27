@@ -56,8 +56,8 @@ room_speed = 60;
           <argument>
             <kind>1</kind>
             <string>/// Follow Camera
-x = (obj_player.x)
-y = (obj_player.y)
+x += (obj_player.x - x) / 20
+y += (obj_player.y - y) / 20
 
 if(window_get_height() != global.gameHeight * global.zoom
     &amp;&amp; window_get_width() != global.gameWidth * global.zoom
