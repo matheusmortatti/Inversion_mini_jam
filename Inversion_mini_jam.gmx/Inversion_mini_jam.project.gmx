@@ -25,6 +25,7 @@
     </objects>
     <objects name="Controllers">
       <object>objects\ctrl_room_general</object>
+      <object>objects\ctrl_view</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -26,14 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
-grav = 0.2;
+grav = 0.1;
 hsp = 0;
 vsp = 0;
 jumpspeed = 3;
-movespeed = 4;
+movespeed = 3;
 mouse_click = false;
 mouseX = 0;
 mouseY = 0;
+
+//Init camera
+
+instance_create(x, y, ctrl_view);
 
 enum state
 {
@@ -289,6 +293,49 @@ if(mouse_click){
     }
     
     
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Rotate View
+
+if(state_player == state.UP) 
+{
+    offset = 180 - view_angle[0];
+    if(offset != 0) view_angle[0] += sign(offset);
+} else
+if(state_player == state.DOWN)
+{
+    offset = 0 - view_angle[0];
+    if(offset != 0) view_angle[0] += sign(offset);
+}else
+if(state_player == state.RIGHT)
+{
+    offset = 270 - view_angle[0];
+    if(offset != 0) view_angle[0] += sign(offset);
+}else
+if(state_player == state.LEFT)
+{
+    offset = 90 - view_angle[0];
+    if(offset != 0) view_angle[0] += sign(offset);
 }
 
 </string>
