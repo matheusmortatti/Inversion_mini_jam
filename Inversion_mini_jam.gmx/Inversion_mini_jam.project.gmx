@@ -12,6 +12,7 @@
     <sprite>sprites\sprite3</sprite>
     <sprite>sprites\walk_left</sprite>
     <sprite>sprites\walk_right</sprite>
+    <sprite>sprites\walk_idle</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
