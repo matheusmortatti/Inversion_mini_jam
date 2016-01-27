@@ -23,14 +23,14 @@
   </scripts>
   <objects name="objects">
     <objects name="Actors">
+      <object>objects\obj_grav_box_parent</object>
       <object>objects\obj_grav_box_right</object>
       <object>objects\obj_grav_box_down</object>
       <object>objects\obj_grav_box_left</object>
       <object>objects\obj_grav_box_up</object>
       <object>objects\obj_wall</object>
-      <object>objects\obj_player</object>
       <object>objects\obj_wall_parent</object>
-      <object>objects\obj_grav_box_parent</object>
+      <object>objects\obj_player</object>
       <object>objects\obj_menu</object>
     </objects>
     <objects name="Controllers">
