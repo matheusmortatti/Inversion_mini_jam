@@ -93,26 +93,7 @@ if(!mouse_click)
             {
                 vsp = key_jump * -jumpspeed
             }
-            //Horizontal Collision
-            if (place_meeting(x+hsp,y,obj_wall_parent))
-            {
-                while(!place_meeting(x+sign(hsp),y,obj_wall_parent))
-                {
-                    x += sign(hsp);
-                }
-                hsp = 0;
-            }
-            x += hsp;
-            //Vertical Collision
-            if (place_meeting(x,y+vsp,obj_wall_parent))
-            {
-                while(!place_meeting(x,y+sign(vsp),obj_wall_parent))
-                {
-                    y += sign(vsp);
-                }
-                vsp = 0;
-            }
-            y += vsp;
+            
             break;
             
         case state.UP:
@@ -120,33 +101,13 @@ if(!mouse_click)
             move = -(key_left + key_right);
             if(move != 0) image_xscale = -move;
             hsp = move * movespeed;
-            if (vsp &lt; 10) vsp += grav;
+            if (vsp &gt; -10) vsp -= grav;
             
             if (place_meeting(x,y-1,obj_wall_parent))
             {
-                vsp = key_jump * -jumpspeed
+                vsp = key_jump * jumpspeed
             }
             
-            //Horizontal Collision
-            if (place_meeting(x+hsp,y,obj_wall_parent))
-            {
-                while(!place_meeting(x+sign(hsp),y,obj_wall_parent))
-                {
-                    x += sign(hsp);
-                }
-                hsp = 0;
-            }
-            x += hsp;
-            //Vertical Collision
-            if (place_meeting(x,y-vsp,obj_wall_parent))
-            {
-                while(!place_meeting(x,y-sign(vsp),obj_wall_parent))
-                {
-                    y -= sign(vsp);
-                }
-                vsp = 0;
-            }
-            y -= vsp;
             break;
             
         case state.RIGHT:
@@ -160,26 +121,7 @@ if(!mouse_click)
             {
                 hsp = key_jump * -jumpspeed
             }
-            //Horizontal Collision
-            if (place_meeting(x+hsp,y,obj_wall_parent))
-            {
-                while(!place_meeting(x+sign(hsp),y,obj_wall_parent))
-                {
-                    x += sign(hsp);
-                }
-                hsp = 0;
-            }
-            x += hsp;
-            //Vertical Collision
-            if (place_meeting(x,y+vsp,obj_wall_parent))
-            {
-                while(!place_meeting(x,y+sign(vsp),obj_wall_parent))
-                {
-                    y += sign(vsp);
-                }
-                vsp = 0;
-            }
-            y += vsp;
+            
             break;
             
         case state.LEFT:
@@ -187,36 +129,18 @@ if(!mouse_click)
             move = (key_left + key_right);
             if(move != 0) image_xscale = move;
             vsp = move * movespeed;
-            if (hsp &lt; 10) hsp += grav;
+            if (hsp &gt; -10) hsp -= grav;
             
             if (place_meeting(x-1,y,obj_wall_parent))
             {
-                hsp = key_jump * -jumpspeed
+                hsp = key_jump * jumpspeed
             }
-            //Horizontal Collision
-            if (place_meeting(x-hsp,y,obj_wall_parent))
-            {
-                while(!place_meeting(x-sign(hsp),y,obj_wall_parent))
-                {
-                    x -= sign(hsp);
-                }
-                hsp = 0;
-            }
-            x -= hsp;
-            //Vertical Collision
-            if (place_meeting(x,y+vsp,obj_wall_parent))
-            {
-                while(!place_meeting(x,y+sign(vsp),obj_wall_parent))
-                {
-                    y += sign(vsp);
-                }
-                vsp = 0;
-            }
-            y += vsp;
             break;
             
             
     }
+    
+    scr_collision_handle(obj_wall_parent);
 }
 </string>
           </argument>
