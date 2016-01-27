@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_grav_box_parent</parentName>
+  <parentName>obj_wall_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation Code
-image_angle = 180;
+            <string>mouse_click = false;
 </string>
           </argument>
         </arguments>
@@ -49,14 +48,23 @@ image_angle = 180;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Change Gravity
+            <string>/// Path to Grav Box
 
-with (obj_player)
+if(keyboard_check_pressed(mb_left) &amp;&amp; place_meeting(mouse_x, mouse_y, obj_grav_box_parent)) mouse_click = true;
+
+if(mouse_click)
 {
-    if(place_meeting(x, y + 1, obj_grav_box_down)||
-    place_meeting(x, y - 1, obj_grav_box_down)||
-    place_meeting(x + 1, y, obj_grav_box_down)||
-    place_meeting(x - 1, y, obj_grav_box_down)) state_player = state.DOWN;
+    grid = mp_grid_create(0, 0, room_width / 16, room_height / 16, 16, 16);
+    path = path_add();
+    mp_grid_add_instances(path, obj_wall_parent, true);
+    mp_grid_path(grid, path, obj_player.x, obj_player.y, x, y, true);
+    path_start(path, 3, "", 1);
+    
+    if(place_meeting(obj_player.x, obj_player.y + 1, obj_grav_box_parent)||
+    place_meeting(obj_player.x, obj_player.y - 1, obj_grav_box_parent)||
+    place_meeting(obj_player.x + 1, obj_player.y, obj_grav_box_parent)||
+    place_meeting(obj_player.x - 1, obj_player.y, obj_grav_box_parent)) mouse_click = false;
+    
 }
 </string>
           </argument>

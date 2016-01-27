@@ -20,13 +20,15 @@
       <object>objects\obj_grav_box_up</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_player</object>
+      <object>objects\obj_wall_parent</object>
+      <object>objects\obj_grav_box_parent</object>
     </objects>
     <objects name="Controllers">
       <object>objects\ctrl_room_general</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\Level00</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
