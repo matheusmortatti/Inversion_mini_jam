@@ -9,6 +9,7 @@
     <sprite>sprites\sp_wall</sprite>
     <sprite>sprites\sp_player</sprite>
     <sprite>sprites\sp_grav_box</sprite>
+    <sprite>sprites\sprite3</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
