@@ -18,6 +18,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_collision_handle.gml</script>
+    <script>scripts\InitGame.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Actors">

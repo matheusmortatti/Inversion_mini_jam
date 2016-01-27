@@ -8,6 +8,36 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Creation Code
+InitGame();
+view_wport[0] = global.gameWidth;
+view_hport[0] = global.gameHeight;
+view_wview[0] = global.gameWidth;
+view_hview[0] = global.gameHeight;
+display_set_gui_size(global.gameWidth, global.gameHeight);
+room_speed = 60;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -26,9 +56,17 @@
           <argument>
             <kind>1</kind>
             <string>/// Follow Camera
-
 x = (obj_player.x)
 y = (obj_player.y)
+
+if(window_get_height() != global.gameHeight * global.zoom
+    &amp;&amp; window_get_width() != global.gameWidth * global.zoom
+    &amp;&amp; !window_get_fullscreen())
+{
+    window_set_size(global.gameWidth * global.zoom, global.gameHeight * global.zoom);
+    surface_resize(application_surface, global.gameWidth, global.gameHeight);
+    display_reset(0, false);
+}
 </string>
           </argument>
         </arguments>
