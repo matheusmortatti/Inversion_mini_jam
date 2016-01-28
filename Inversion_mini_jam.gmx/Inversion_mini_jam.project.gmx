@@ -13,8 +13,11 @@
     <sprite>sprites\walk_left</sprite>
     <sprite>sprites\walk_right</sprite>
     <sprite>sprites\walk_idle</sprite>
+    <sprite>sprites\spr_portrait</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_black</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_collision_handle.gml</script>
@@ -22,6 +25,9 @@
     <script>scripts\move_towards_object.gml</script>
     <script>scripts\input_handle.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\f_chat</font>
+  </fonts>
   <objects name="objects">
     <objects name="Actors">
       <object>objects\obj_grav_box_parent</object>
@@ -38,6 +44,7 @@
       <object>objects\ctrl_room_general</object>
       <object>objects\ctrl_view</object>
       <object>objects\ctrl_reset</object>
+      <object>objects\ctrl_dialogue</object>
     </objects>
   </objects>
   <rooms name="rooms">
